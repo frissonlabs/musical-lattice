@@ -1,0 +1,252 @@
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a {
+  position: relative;
+  font-size: 0.8em;
+  width: 1em;
+  border: 1px solid transparent;
+  transition: border-color linear 150ms, width linear 100ms;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover {
+  border-color: hsl(0, 0%, 90%);
+}
+
+.components-eleven-limit-SpinnableNumber-__index__input__22KBE {
+  display: block;
+  padding-left: 0.1em;
+  padding-right: 0.8em;
+  width: 100%;
+  border: none;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__input__22KBE::-webkit-inner-spin-button,
+.components-eleven-limit-SpinnableNumber-__index__input__22KBE::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__control__2NSMp {
+  position: absolute;
+  line-height: 1;
+  height: calc(50% - 0.05em);
+  right: 0.15em;
+  opacity: 0;
+  transition: opacity linear 150ms;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover .components-eleven-limit-SpinnableNumber-__index__control__2NSMp {
+  opacity: 0.2;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a .components-eleven-limit-SpinnableNumber-__index__control__2NSMp:hover {
+  opacity: 1;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__incrementer__3TmCF {
+  top: 0.05em;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__decrementer__1Spur {
+  bottom: 0.05em;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1 {
+  opacity: 1;
+  cursor: normal;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__incrementer-enabled__1wm35 {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__incrementer-disabled__2Aevy {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__decrementer-enabled__2iZPj {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__decrementer-disabled__1GpWd {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__control-icon__3StM2 {
+  display: block;
+  height: 100%;
+  width: 0.5em;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1,
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1:hover,
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1,
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1:hover {
+  opacity: 0;
+  pointer-events: none;
+}
+.stylesheets-eleven-limit-__component__component__1QPh_ {
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.components-eleven-limit-PowerUnit-__index__root__2F6c_ {
+
+  position: relative;
+  margin-right: 0.9em;
+  transition: margin-right linear 150ms;
+}
+
+.components-eleven-limit-PowerUnit-__index__base__-vlP2 {
+}
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a {
+  position: relative;
+  font-size: 0.8em;
+  width: 1em;
+  border: 1px solid transparent;
+  transition: border-color linear 150ms, width linear 100ms;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover {
+  border-color: hsl(0, 0%, 90%);
+}
+
+.components-eleven-limit-SpinnableNumber-__index__input__22KBE {
+  display: block;
+  padding-left: 0.1em;
+  padding-right: 0.8em;
+  width: 100%;
+  border: none;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__input__22KBE::-webkit-inner-spin-button,
+.components-eleven-limit-SpinnableNumber-__index__input__22KBE::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__control__2NSMp {
+  position: absolute;
+  line-height: 1;
+  height: calc(50% - 0.05em);
+  right: 0.15em;
+  opacity: 0;
+  transition: opacity linear 150ms;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover .components-eleven-limit-SpinnableNumber-__index__control__2NSMp {
+  opacity: 0.2;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a .components-eleven-limit-SpinnableNumber-__index__control__2NSMp:hover {
+  opacity: 1;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__incrementer__3TmCF {
+  top: 0.05em;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__decrementer__1Spur {
+  bottom: 0.05em;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1 {
+  opacity: 1;
+  cursor: normal;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__incrementer-enabled__1wm35 {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__incrementer-disabled__2Aevy {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__decrementer-enabled__2iZPj {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__decrementer-disabled__1GpWd {
+}
+
+.components-eleven-limit-SpinnableNumber-__index__control-icon__3StM2 {
+  display: block;
+  height: 100%;
+  width: 0.5em;
+}
+
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1,
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1:hover,
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1,
+.components-eleven-limit-SpinnableNumber-__index__root__1V70a:hover .components-eleven-limit-SpinnableNumber-__index__disabled-control__2JDK1:hover {
+  opacity: 0;
+  pointer-events: none;
+}
+.components-eleven-limit-PowerUnit-__number__root__32VqX {
+
+  display: block;
+  top: -0.25em;
+  left: 102%;
+  position: absolute;
+  z-index: 1;
+}
+
+.components-eleven-limit-PowerUnit-__number__input__1c4VY {
+
+  background: transparent;
+  color: hsl(320, 100%, 50%);
+}
+
+.components-eleven-limit-PowerUnit-__number__root__32VqX:hover .components-eleven-limit-PowerUnit-__number__input__1c4VY,
+.components-eleven-limit-PowerUnit-__number__input__1c4VY:focus {
+  background: white;
+}
+
+.components-eleven-limit-PowerUnit-__number__control__3nZgo {
+}
+
+.components-eleven-limit-PowerUnit-__number__incrementer-enabled__2CyX5 {
+}
+
+.components-eleven-limit-PowerUnit-__number__incrementer-disabled__3OEc9 {
+}
+
+.components-eleven-limit-PowerUnit-__number__decrementer-enabled__2kxHj {
+}
+
+.components-eleven-limit-PowerUnit-__number__decrementer-disabled__11UEx {
+}
+
+.components-eleven-limit-PowerUnit-__number__control-icon__36dBH {
+}
+.components-eleven-limit-ToggleButton-__index__root__23mC9 {
+  border: none;
+  background: hsl(245, 98%, 66%);
+  color: white;
+  border-radius: 0.25em;
+  padding: 0.35em 0.45em;
+  cursor: pointer;
+  transition: background linear 150ms;
+}
+
+.components-eleven-limit-ToggleButton-__index__root__23mC9:hover {
+  background: hsl(251, 93%, 56%);
+}
+.stylesheets-eleven-limit-__section__section__2LL2U {
+  margin-bottom: 1em;
+}
+.components-eleven-limit-Root-__index__root__1ftZl {
+}
+
+.components-eleven-limit-Root-__index__section__17yFS {
+}
+
+.components-eleven-limit-Root-__index__component__3vD8f {
+}
+
+.components-eleven-limit-Root-__index__operator__3vYXZ {
+  color: hsl(0, 0%, 86%);
+}
+
+.components-eleven-limit-Root-__index__diff-in-cents__2mFG- {
+  font-size: 75%;
+  color: hsl(0, 0%, 86%);
+}
+
+.components-eleven-limit-Root-__index__number__3oR5Z {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=eleven-limit-404edbb067fa1cc64465fad1ce52f570.css.map*/
