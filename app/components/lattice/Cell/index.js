@@ -5,9 +5,10 @@ import StartAudioContext from "startaudiocontext";
 import Tone from "tone";
 
 import CellLabel from "../../../models/CellLabel";
-import cellShapesFilePath from "../../../svg/cell-shapes.svg";
+// eslint-disable-next-line no-unused-vars
+import CellShapesComponent from "../../../svg/cell-shapes.svg";
+import cellShapesDataUrl from "../../../svg/cell-shapes.svg?data-url";
 import styles from "./index.css";
-
 
 class Cell extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Cell extends React.Component {
         className={this.props.className}
         styleName={this._styleName}
         style={{
-          backgroundImage: `url(${cellShapesFilePath}#${this._shapeId})`,
+          backgroundImage: `url(${cellShapesDataUrl}#${this._shapeId})`,
           width: `${this.props.label.width}px`,
           height: `${this.props.label.height}px`,
           left: this.props.label.position.x,

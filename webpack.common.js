@@ -20,15 +20,28 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: [
+        oneOf: [
           {
-            loader: "babel-loader"
+            resourceQuery: /data-url/,
+            use: {
+              loader: "url-loader",
+              options: {
+                limit: 10000
+              }
+            }
           },
           {
-            loader: "react-svg-loader",
-            options: {
-              jsx: true
-            }
+            use: [
+              {
+                loader: "babel-loader"
+              },
+              {
+                loader: "react-svg-loader",
+                options: {
+                  jsx: true
+                }
+              }
+            ]
           }
         ]
       },
