@@ -1,6 +1,6 @@
 import { flatMap, fromPairs, range, reduce, zip } from "lodash";
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import CSSModules from "react-css-modules";
 import Tone from "tone";
 
@@ -59,8 +59,7 @@ class Honeycomb extends React.Component {
     this.state = {
       mode: "mouse",
       mousedOverCell: null,
-      mouseActiveCell: null,
-      keyActiveCells: {},
+      activeCells: {},
       cellKeyMappings: reduce(
         DEFAULT_CELL_KEY_MAPPINGS,
         (object, location, key) => {
@@ -72,15 +71,27 @@ class Honeycomb extends React.Component {
 
     this._onGlobalKeyDown = this._onGlobalKeyDown.bind(this);
     this._onGlobalKeyUp = this._onGlobalKeyUp.bind(this);
-    this._onCellMouseEnter = this._onCellMouseEnter.bind(this);
-    this._onCellMouseLeave = this._onCellMouseLeave.bind(this);
     this._onCellMouseDown = this._onCellMouseDown.bind(this);
-    this._onMouseUp = this._onMouseUp.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener("keydown", this._onGlobalKeyDown);
     window.addEventListener("keyup", this._onGlobalKeyUp);
+
+    // Listen for global mouse click event
+    document.addEventListener("mousedown", evt => {
+      if (evt.target.className.indexOf("Cell") === -1) {
+        // If the click was not on a cell, clear the active cells
+        const cellLabels = Object.keys(this.state.activeCells);
+        cellLabels.forEach(cellLabel => {
+          const frequency = this.state.activeCells[cellLabel].frequency;
+          this.props.synth.triggerRelease(frequency);
+        });
+        if (cellLabels.length > 0) {
+          this.setState({ activeCells: {} });
+        }
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -113,8 +124,6 @@ class Honeycomb extends React.Component {
             label={cellLabel}
             group={cellLabelGroup.number}
             zIndex={this._determineZIndex(cellLabel)}
-            onMouseEnter={this._onCellMouseEnter}
-            onMouseLeave={this._onCellMouseLeave}
             onMouseDown={this._onCellMouseDown}
             isActive={this._isCellActive(cellLabel)}
             isEnabled={this._isCellEnabled(cellLabel)}
@@ -141,11 +150,11 @@ class Honeycomb extends React.Component {
         if (cellLabel != null) {
           if (this._isCellEnabled(cellLabel)) {
             this.setState(prevState => {
-              const keyActiveCells = {
-                ...prevState.keyActiveCells,
+              const activeCells = {
+                ...prevState.activeCells,
                 [cellLabel.name]: cellLabel
               };
-              return { keyActiveCells };
+              return { activeCells };
             });
             this.props.synth.triggerAttack(cellLabel.frequency);
           }
@@ -182,9 +191,9 @@ class Honeycomb extends React.Component {
         if (cellLabel != null) {
           if (this._isCellEnabled(cellLabel)) {
             this.setState(prevState => {
-              const keyActiveCells = { ...prevState.keyActiveCells };
-              delete keyActiveCells[cellLabel.name];
-              return { keyActiveCells };
+              const activeCells = { ...prevState.activeCells };
+              delete activeCells[cellLabel.name];
+              return { activeCells };
             });
             this.props.synth.triggerRelease(cellLabel.frequency);
           }
@@ -196,38 +205,27 @@ class Honeycomb extends React.Component {
     }
   }
 
-  _onCellMouseEnter(cellLabel) {
-    if (this._isCellEnabled(cellLabel)) {
-      const newState = {};
-
-      if (this.state.mouseActiveCell != null) {
-        this.props.synth.triggerRelease(this.state.mouseActiveCell.frequency);
-        this.props.synth.triggerAttack(cellLabel.frequency);
-        newState.mouseActiveCell = cellLabel;
-      }
-
-      newState.mousedOverCell = cellLabel;
-
-      this.setState(newState);
-    }
-  }
-
-  _onCellMouseLeave() {
-    this.setState({ mousedOverCell: null });
-  }
-
   _onCellMouseDown(cellLabel) {
     if (this._isCellEnabled(cellLabel)) {
-      this.setState({ mouseActiveCell: cellLabel });
-      this.props.synth.triggerAttack(cellLabel.frequency);
+      // If the cell is already active, then we're releasing it.
+      if (this._isCellActive(cellLabel)) {
+        this.setState(prevState => {
+          const activeCells = { ...prevState.activeCells };
+          delete activeCells[cellLabel.name];
+          return { activeCells };
+        });
+        this.props.synth.triggerRelease(cellLabel.frequency);
+      } else {
+        this.setState(prevState => {
+          const activeCells = {
+            ...prevState.activeCells,
+            [cellLabel.name]: cellLabel
+          };
+          return { activeCells };
+        });
+        this.props.synth.triggerAttack(cellLabel.frequency);
+      }
     }
-  }
-
-  _onMouseUp() {
-    event.preventDefault();
-
-    this.setState({ mouseActiveCell: null });
-    this.props.synth.releaseAll();
   }
 
   _determineZIndex(cellLabel) {
@@ -243,10 +241,8 @@ class Honeycomb extends React.Component {
   }
 
   _isCellActive(cellLabel) {
-    if (this.state.mouseActiveCell) {
-      return this.state.mouseActiveCell.name === cellLabel.name;
-    } else if (this.state.mode === "keyboard") {
-      return cellLabel.name in this.state.keyActiveCells;
+    if (this.state.activeCells) {
+      return cellLabel.name in this.state.activeCells;
     } else {
       return false;
     }

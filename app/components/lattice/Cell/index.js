@@ -1,21 +1,22 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import CSSModules from "react-css-modules";
 import StartAudioContext from "startaudiocontext";
 import Tone from "tone";
 
-import cellShapesFilePath from "../../../svg/cell-shapes.svg";
 import CellLabel from "../../../models/CellLabel";
+import cellShapesFilePath from "../../../svg/cell-shapes.svg";
 import styles from "./index.css";
+
 
 class Cell extends React.Component {
   constructor(props) {
     super(props);
 
-    this._onMouseEnter = this._onMouseEnter.bind(this);
-    this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onMouseDown = this._onMouseDown.bind(this);
     this._onContextMenu = this._onContextMenu.bind(this);
+
+    this.started = false;
   }
 
   render() {
@@ -25,16 +26,20 @@ class Cell extends React.Component {
         className={this.props.className}
         styleName={this._styleName}
         style={{
-          backgroundImage: `url(${cellShapesFilePath}#${this._shapeId}`,
+          backgroundImage: `url(${cellShapesFilePath}#${this._shapeId})`,
           width: `${this.props.label.width}px`,
           height: `${this.props.label.height}px`,
           left: this.props.label.position.x,
           top: this.props.label.position.y,
           zIndex: this.props.zIndex
         }}
-        onMouseEnter={this._onMouseEnter}
-        onMouseLeave={this._onMouseLeave}
-        onMouseDown={this._onMouseDown}
+        onMouseDown={evt => {
+          if (!this.started) {
+            this.started = true;
+            StartAudioContext(Tone.context, this.element);
+          }
+          this._onMouseDown(evt);
+        }}
         onContextMenu={this._onContextMenu}
       >
         <div styleName="name">{this.props.label.name}</div>
@@ -48,10 +53,6 @@ class Cell extends React.Component {
         <div styleName="frequency">{this.props.label.formattedFrequency}</div>
       </button>
     );
-  }
-
-  componentDidMount() {
-    StartAudioContext(Tone.context, this.element);
   }
 
   get _styleName() {
@@ -72,7 +73,7 @@ class Cell extends React.Component {
 
   get _shapeId() {
     if (this.props.isEnabled) {
-      return `shape-${this.props.group})`;
+      return `shape-${this.props.group}`;
     } else {
       return "shape-disabled";
     }
@@ -93,14 +94,6 @@ class Cell extends React.Component {
     return styles.join(" ");
   }
 
-  _onMouseEnter() {
-    this.props.onMouseEnter(this.props.label);
-  }
-
-  _onMouseLeave() {
-    this.props.onMouseLeave();
-  }
-
   _onMouseDown(event) {
     event.preventDefault();
     this.props.onMouseDown(this.props.label);
@@ -117,9 +110,7 @@ Cell.propTypes = {
   label: PropTypes.instanceOf(CellLabel).isRequired,
   group: PropTypes.number.isRequired,
   zIndex: PropTypes.number.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
   onMouseDown: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
   isEnabled: PropTypes.bool.isRequired
 };
 
