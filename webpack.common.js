@@ -22,11 +22,11 @@ module.exports = {
         test: /\.svg$/,
         oneOf: [
           {
-            resourceQuery: /data-url/,
+            resourceQuery: /file/,
             use: {
-              loader: "url-loader",
+              loader: "file-loader",
               options: {
-                limit: 10000
+                name: "static/media/[name].[hash:8].[ext]"
               }
             }
           },

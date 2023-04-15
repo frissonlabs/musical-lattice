@@ -27,7 +27,9 @@ class Cell extends React.Component {
         className={this.props.className}
         styleName={this._styleName}
         style={{
-          backgroundImage: `url(${cellShapesDataUrl}#${this._shapeId})`,
+          backgroundImage: `url(https://mcmire.github.io/musical-lattice/4d6bb0ca04a6bf53af51ddc3f43c29e2.svg#${
+            this._shapeId
+          })`,
           width: `${this.props.label.width}px`,
           height: `${this.props.label.height}px`,
           left: this.props.label.position.x,
@@ -51,7 +53,13 @@ class Cell extends React.Component {
             {this.props.label.ratioDenominator}
           </span>
         </div>
-        <div styleName="frequency">{this.props.label.formattedFrequency}</div>
+        <div styleName="frequency">
+          {" "}
+          {Tone.Frequency(
+            parseFloat(this.props.label.formattedFrequency)
+          ).toNote()}{" "}
+          - {this.props.label.formattedFrequency}
+        </div>
       </button>
     );
   }
